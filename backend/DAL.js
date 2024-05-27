@@ -78,7 +78,7 @@ const ComicModel = mongoose.model("comic", comics);
 
 exports.DAL = {
     //Post Dal Stuff
-    create: (bookTitle, bookAuthor, bookPublisher, bookCount, bookYear, Img) => {
+    createBook: (bookTitle, bookAuthor, bookPublisher, bookCount, bookYear, Img) => {
         let Books = {
             bookTitle: bookTitle,
             bookAuthor: bookAuthor,
@@ -89,11 +89,11 @@ exports.DAL = {
         }
         BookModel.collection.insertOne(Books);
     },
-    delete: async (id) => {
+    deleteBook: async (id) => {
         await BookModel.deleteOne({ _id: id }).exec();
         
     },
-    update: async (id, data) => {
+    updateBook: async (id, data) => {
         try {
             const updatedData = await BookModel.findOneAndUpdate(
                 { _id: id }, data, { new: true }
@@ -113,19 +113,20 @@ exports.DAL = {
         return await BookModel.findById(id).exec();
     },
 
-    create: (vinylLabel, vinylSinger, vinylYear) => {
+    createVinyl: (vinylLabel, vinylSinger, vinylYear, Img) => {
         let Vinyls = {
             vinylLabel: vinylLabel,
             vinylSinger: vinylSinger,
-            vinylYear: vinylYear
+            vinylYear: vinylYear,
+            Img: Img
         }
         VinylModel.collection.insertOne(Vinyls);
     },
-    delete: async (id) => {
+    deleteVinyl: async (id) => {
         await VinylModel.deleteOne({ _id: id }).exec();
         
     },
-    update: async (id, data) => {
+    updateVinyl: async (id, data) => {
         try {
             const updatedData = await VinylModel.findOneAndUpdate(
                 { _id: id }, data, { new: true }
@@ -145,20 +146,21 @@ exports.DAL = {
         return await VinylModel.findById(id).exec();
     },
 
-    create: (gameTitle, gameStudio, gameCopy, gameYear) => {
+    createGame: (gameTitle, gameStudio, gameCopy, gameYear, Img) => {
         let Games = {
             gameTitle: gameTitle,
             gameStudio: gameStudio,
             gameCopy: gameCopy,
-            gameYear: gameYear
+            gameYear: gameYear,
+            Img: Img
         }
         GameModel.collection.insertOne(Games);
     },
-    delete: async (id) => {
+    deleteGame: async (id) => {
         await GameModel.deleteOne({ _id: id }).exec();
         
     },
-    update: async (id, data) => {
+    updateGame: async (id, data) => {
         try {
             const updatedData = await GameModel.findOneAndUpdate(
                 { _id: id }, data, { new: true }
@@ -178,22 +180,23 @@ exports.DAL = {
         return await GameModel.findById(id).exec();
     },
 
-    create: (comicTitle, comicAuthor, comicPublisher, comicCopy, comicCount, comicYear) => {
+    createComic: (comicTitle, comicAuthor, comicPublisher, comicCopy, comicCount, comicYear, Img) => {
         let Comics = {
             comicTitle: comicTitle,
             comicAuthor: comicAuthor,
             comicPublisher: comicPublisher,
             comicCopy: comicCopy,
             comicCount: comicCount,
-            comicYear: comicYear
+            comicYear: comicYear,
+            Img: Img
         }
         ComicModel.collection.insertOne(Comics);
     },
-    delete: async (id) => {
+    deleteComic: async (id) => {
         await ComicModel.deleteOne({ _id: id }).exec();
         
     },
-    update: async (id, data) => {
+    updateComic: async (id, data) => {
         try {
             const updatedData = await ComicModel.findOneAndUpdate(
                 { _id: id }, data, { new: true }
