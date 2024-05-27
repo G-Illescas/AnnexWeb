@@ -1,7 +1,7 @@
 const { mongoose, Schema } = require("mongoose");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
-const connectionStringz = "mongodb+srv://quillianrenae:8YDtlJxCKoZrlfgo@cluster0.sv3zblq.mongodb.net/";
+const connectionStringz = "mongodb+srv://johnstonharlea:I62V4Lsg3tjSkxzC@cluster0.ryaxisq.mongodb.net/dart_DB?";
 const collectionOne = "Users";
 const collectionTwo = "Books";
 const collectionThree = "Vinyls";
@@ -15,7 +15,7 @@ connection.once("open", () => {
     console.log("Mongoose Connected")
 });
 
-const user = new Schema({
+const users = new Schema({
     Key: String,
     Gmail: String,
     Username: String,
@@ -24,15 +24,16 @@ const user = new Schema({
 },
     { collection: collectionOne }
 );
-const UserModel = mongoose.model("user", user);
+const UserModel = mongoose.model("user", users);
 
 
 const books = new Schema({
     title: String,
     author: String,
     publisher: String,
-    pageCount: Int,
-    publicationYear: Int
+    pageCount: String,
+    publicationYear: String,
+    Img: String,
 },
     { collection: collectionTwo}
 );
@@ -42,22 +43,24 @@ const BookModel = mongoose.model("book", books);
 const vinyls = new Schema({
     label: String,
     singer: String,
-    publicationYear: Int
+    publicationYear: String,
+    Img: String,
 },
     { collection: collectionThree }
 );
 const VinylModel = mongoose.model("vinyl", vinyls);
 
 
-const games = new Schema({
+const videoGames = new Schema({
     title: String,
     studio: String,
     digitalCopy: Boolean,
-    publicationYear: Int
+    publicationYear: String,
+    Img: String,
 },
     { collection: collectionFour }
 );
-const GameModel = mongoose.model("game", games);
+const GameModel = mongoose.model("game", videoGames);
 
 
 const comics = new Schema({
@@ -65,8 +68,9 @@ const comics = new Schema({
     author: String,
     publisher: String,
     digitalCopy: Boolean,
-    pageCount: Int,
-    publicationYear: Int
+    pageCount: String,
+    publicationYear: String,
+    Img: String,
 },
     { collection: collectionFive }
 );
@@ -74,13 +78,14 @@ const ComicModel = mongoose.model("comic", comics);
 
 exports.DAL = {
     //Post Dal Stuff
-    create: (bookTitle, bookAuthor, bookPublisher, bookCount, bookYear) => {
+    create: (bookTitle, bookAuthor, bookPublisher, bookCount, bookYear, Img) => {
         let Books = {
             bookTitle: bookTitle,
             bookAuthor: bookAuthor,
             bookPublisher: bookPublisher,
             bookCount: bookCount,
-            bookYear: bookYear
+            bookYear: bookYear,
+            Img: Img
         }
         BookModel.collection.insertOne(Books);
     },
