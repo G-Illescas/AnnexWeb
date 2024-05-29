@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import HomePage from './Pages/Home'; 
+import Navbar from './Pages/Navbar'; 
+import Collections from './Pages/Collection'; 
+import SignIn from './Pages/SignIn'; 
+import NewCollection from './Pages/NewCollection'; 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router> 
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<HomePage />} /> 
+          <Route path="/collections" element={<Collections />} />
+          <Route path="/login" element={<SignIn />} />
+          <Route path="/new-collection" element={<NewCollection />} /> {/* Add this line */}
+        </Routes>
+      </Router>
     </div>
   );
 }
