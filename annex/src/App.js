@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<HomePage />} /> 
           <Route path="/collections" element={<Collections />} />
           <Route path="/login" element={<SignIn />} />
-          <Route path="/new-collection" element={<NewCollection />} /> {/* Add this line */}
+          <Route path="/new-collection" element={<NewCollection />} /> 
         </Routes>
       </Router>
     </div>
